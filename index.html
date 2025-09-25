@@ -5,25 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Abhitech Energycon Limited</title>
 <style>
+  :root {
+    --brand-blue: #02008a;
+    --brand-accent: #00e0ff;
+    --text-dark: #111;
+    --text-light: #fff;
+  }
+
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    background: #f5f8ff;
-    color: white;
+    background: #ffffff;
+    color: var(--text-dark);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
-  /* Navbar with gradient */
+  /* Navbar */
   header {
-    background: linear-gradient(90deg, #010066, #004d99);
+    background: var(--brand-blue);
     padding: 1rem 2rem;
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: white;
-    font-size: 2rem;
+    color: var(--text-light);
+    font-size: 1.8rem;
     font-weight: 700;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   }
@@ -38,14 +46,17 @@
     margin: 2rem auto;
     padding: 0 1rem;
     width: 100%;
+    position: relative;
+    z-index: 2;
   }
 
-  /* About Us with fade-in animation */
+  /* About Us */
   #about-us {
-    background: #020044;
+    background: var(--brand-blue);
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+    color: var(--text-light);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     margin-bottom: 3rem;
     opacity: 0;
     transform: translateY(20px);
@@ -53,8 +64,8 @@
   }
   #about-us h2 {
     margin-top: 0;
-    color: #00ffff;
-    border-bottom: 2px solid #00ffff;
+    color: var(--brand-accent);
+    border-bottom: 2px solid var(--brand-accent);
     padding-bottom: 0.5rem;
   }
 
@@ -68,13 +79,13 @@
   /* Services */
   #services h2 {
     margin-bottom: 1rem;
-    color: #004d99;
-    border-bottom: 2px solid #004d99;
+    color: var(--brand-blue);
+    border-bottom: 2px solid var(--brand-blue);
     padding-bottom: 0.5rem;
     font-weight: 700;
   }
 
-  /* Carousel container */
+  /* Carousel */
   .carousel-wrapper {
     position: relative;
     overflow: hidden;
@@ -82,7 +93,6 @@
   .cards-container {
     display: flex;
     gap: 1.5rem;
-    padding-bottom: 1rem;
     animation: scrollCards 30s linear infinite;
   }
   .cards-container > .card {
@@ -93,14 +103,14 @@
     100% { transform: translateX(calc(-4 * (250px + 1.5rem))); }
   }
 
-  /* Card styles */
+  /* Card */
   .card {
-    background: linear-gradient(160deg, #02008a, #003366);
+    background: #fff;
+    border: 2px solid var(--brand-blue);
     border-radius: 1rem;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.7);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
     cursor: pointer;
-    user-select: none;
     flex: 0 0 250px;
     position: relative;
     overflow: hidden;
@@ -108,31 +118,9 @@
     flex-direction: column;
   }
 
-  /* Glow hover effect */
-  .card::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg, transparent, rgba(0,255,255,0.4), transparent 30%);
-    transform: rotate(0deg);
-    transition: opacity 0.3s;
-    opacity: 0;
-    z-index: 1;
-  }
-  .card:hover::before {
-    opacity: 1;
-    animation: rotateGlow 4s linear infinite;
-  }
-  @keyframes rotateGlow {
-    100% { transform: rotate(360deg); }
-  }
-
   .card:hover {
-    transform: scale(1.07) translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,255,255,0.6);
+    transform: scale(1.05) rotate3d(1,1,0,6deg);
+    box-shadow: 0 15px 35px rgba(2,0,138,0.4), 0 0 25px var(--brand-accent);
     z-index: 2;
   }
 
@@ -142,12 +130,6 @@
     object-fit: cover;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
-    filter: brightness(0.85);
-    transition: filter 0.3s ease;
-    z-index: 2;
-  }
-  .card:hover img {
-    filter: brightness(1);
   }
 
   .card-content {
@@ -155,35 +137,42 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    z-index: 2;
   }
 
   .card-title {
     font-weight: 700;
-    color: #00ffff;
+    color: var(--brand-blue);
     margin: 0 0 0.5rem 0;
     font-size: 1.2rem;
   }
   .card-description {
     font-size: 0.95rem;
-    color: #cceeff;
+    color: #444;
     flex-grow: 1;
   }
 
-  /* Footer gradient */
+  /* Footer */
   footer {
-    background: linear-gradient(90deg, #010066, #004d99);
-    color: #00ffff;
+    background: var(--brand-blue);
+    color: var(--brand-accent);
     text-align: center;
     padding: 1rem 0;
     font-weight: 600;
     font-size: 1rem;
-    box-shadow: inset 0 1px 5px rgba(0,255,255,0.4);
+    box-shadow: inset 0 1px 5px rgba(0,0,0,0.3);
   }
 
-  /* Scrollbar hidden */
-  .cards-container::-webkit-scrollbar { display: none; }
-  .cards-container { -ms-overflow-style: none; scrollbar-width: none; }
+  /* Cursor glow effect */
+  .cursor-glow {
+    position: fixed;
+    top: 0; left: 0;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,224,255,0.25) 0%, transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
 
   /* Responsive */
   @media (max-width: 768px) {
@@ -192,6 +181,8 @@
 </style>
 </head>
 <body>
+
+<div class="cursor-glow"></div>
 
 <header>
   <img src="images/abhitech_logo.png" alt="A" />
@@ -241,7 +232,7 @@
           </div>
         </div>
 
-        <!-- Duplicate 4 for infinite loop -->
+        <!-- Duplicate for infinite loop -->
         <div class="card" onclick="redirectTo('smartcoke.html')">
           <img src="images/smartcoke.jpg" alt="SmartCoke" />
           <div class="card-content">
@@ -283,6 +274,7 @@
   function redirectTo(page) {
     window.location.href = page;
   }
+
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("keypress", e => {
       if (e.key === "Enter" || e.key === " ") {
@@ -290,6 +282,13 @@
         card.click();
       }
     });
+  });
+
+  // Cursor glow follow
+  const cursor = document.querySelector(".cursor-glow");
+  document.addEventListener("mousemove", e => {
+    cursor.style.top = e.clientY + "px";
+    cursor.style.left = e.clientX + "px";
   });
 </script>
 
