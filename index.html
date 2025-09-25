@@ -21,6 +21,7 @@
     flex-direction: column;
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
   }
 
   /* Navbar */
@@ -34,6 +35,8 @@
     font-size: 1.8rem;
     font-weight: 700;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 2;
   }
   header img {
     height: 40px;
@@ -64,7 +67,7 @@
   }
   #about-us h2 {
     margin-top: 0;
-    color: var(--brand-accent);
+    color: white;
     border-bottom: 2px solid var(--brand-accent);
     padding-bottom: 0.5rem;
   }
@@ -103,19 +106,20 @@
     100% { transform: translateX(calc(-4 * (250px + 1.5rem))); }
   }
 
-  /* Card */
+  /* Card as link */
   .card {
     background: #fff;
     border: 2px solid var(--brand-blue);
     border-radius: 1rem;
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    cursor: pointer;
     flex: 0 0 250px;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    text-decoration: none;
+    color: inherit;
   }
 
   .card:hover {
@@ -154,12 +158,14 @@
   /* Footer */
   footer {
     background: var(--brand-blue);
-    color: var(--brand-accent);
+    color: white;
     text-align: center;
     padding: 1rem 0;
     font-weight: 600;
     font-size: 1rem;
     box-shadow: inset 0 1px 5px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 2;
   }
 
   /* Cursor glow effect */
@@ -202,65 +208,69 @@
     <h2>Our Services</h2>
     <div class="carousel-wrapper" aria-label="Services carousel">
       <div class="cards-container" id="serviceCards1">
-        <!-- 4 cards -->
-        <div class="card" onclick="redirectTo('smartcoke.html')">
+        
+        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
           <img src="images/smartcoke.jpg" alt="SmartCoke" />
           <div class="card-content">
             <h3 class="card-title">SmartCoke</h3>
             <p class="card-description">AI model predicts coke blend for optimal efficiency and sustainability in coal processing.</p>
           </div>
-        </div>
-        <div class="card" onclick="redirectTo('slaggingpredictor.html')">
-          <img src="images/slaggingpredictor.jpg" alt="SlaggingPredictor" />
-          <div class="card-content">
-            <h3 class="card-title">SlaggingPredictor</h3>
-            <p class="card-description">AI simulates coal blends and predicts slagging to enhance process outcomes.</p>
-          </div>
-        </div>
-        <div class="card" onclick="redirectTo('erp.html')">
-          <img src="images/erp.jpg" alt="ERP" />
-          <div class="card-content">
-            <h3 class="card-title">ERP</h3>
-            <p class="card-description">Robust internal management system to streamline company operations efficiently.</p>
-          </div>
-        </div>
-        <div class="card" onclick="redirectTo('abhistat.html')">
-          <img src="images/abhistat.jpg" alt="Abhistat" />
-          <div class="card-content">
-            <h3 class="card-title">Abhistat</h3>
-            <p class="card-description">Advanced analytics platform to analyze and visualize operational statistics.</p>
-          </div>
-        </div>
+        </a>
 
-        <!-- Duplicate for infinite loop -->
-        <div class="card" onclick="redirectTo('smartcoke.html')">
-          <img src="images/smartcoke.jpg" alt="SmartCoke" />
-          <div class="card-content">
-            <h3 class="card-title">SmartCoke</h3>
-            <p class="card-description">AI model predicts coke blend for optimal efficiency and sustainability in coal processing.</p>
-          </div>
-        </div>
-        <div class="card" onclick="redirectTo('slaggingpredictor.html')">
+        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
           <img src="images/slaggingpredictor.jpg" alt="SlaggingPredictor" />
           <div class="card-content">
             <h3 class="card-title">SlaggingPredictor</h3>
             <p class="card-description">AI simulates coal blends and predicts slagging to enhance process outcomes.</p>
           </div>
-        </div>
-        <div class="card" onclick="redirectTo('erp.html')">
+        </a>
+
+        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
           <img src="images/erp.jpg" alt="ERP" />
           <div class="card-content">
             <h3 class="card-title">ERP</h3>
             <p class="card-description">Robust internal management system to streamline company operations efficiently.</p>
           </div>
-        </div>
-        <div class="card" onclick="redirectTo('abhistat.html')">
+        </a>
+
+        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
           <img src="images/abhistat.jpg" alt="Abhistat" />
           <div class="card-content">
             <h3 class="card-title">Abhistat</h3>
             <p class="card-description">Advanced analytics platform to analyze and visualize operational statistics.</p>
           </div>
-        </div>
+        </a>
+
+        <!-- Duplicate for infinite scroll -->
+        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
+          <img src="images/smartcoke.jpg" alt="SmartCoke" />
+          <div class="card-content">
+            <h3 class="card-title">SmartCoke</h3>
+            <p class="card-description">AI model predicts coke blend for optimal efficiency and sustainability in coal processing.</p>
+          </div>
+        </a>
+        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
+          <img src="images/slaggingpredictor.jpg" alt="SlaggingPredictor" />
+          <div class="card-content">
+            <h3 class="card-title">SlaggingPredictor</h3>
+            <p class="card-description">AI simulates coal blends and predicts slagging to enhance process outcomes.</p>
+          </div>
+        </a>
+        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
+          <img src="images/erp.jpg" alt="ERP" />
+          <div class="card-content">
+            <h3 class="card-title">ERP</h3>
+            <p class="card-description">Robust internal management system to streamline company operations efficiently.</p>
+          </div>
+        </a>
+        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
+          <img src="images/abhistat.jpg" alt="Abhistat" />
+          <div class="card-content">
+            <h3 class="card-title">Abhistat</h3>
+            <p class="card-description">Advanced analytics platform to analyze and visualize operational statistics.</p>
+          </div>
+        </a>
+
       </div>
     </div>
   </section>
@@ -271,19 +281,6 @@
 </footer>
 
 <script>
-  function redirectTo(page) {
-    window.location.href = page;
-  }
-
-  document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("keypress", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        card.click();
-      }
-    });
-  });
-
   // Cursor glow follow
   const cursor = document.querySelector(".cursor-glow");
   document.addEventListener("mousemove", e => {
