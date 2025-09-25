@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Abhitech Energycon Limited</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: white;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* Navbar with logo */
+  header {
+    background: #010066;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  header img {
+    height: 40px;
+    width: auto;
+  }
+
+  main {
+    flex-grow: 1;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  /* About Us */
+  #about-us {
+    background: #010066;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+    margin-bottom: 3rem;
+  }
+
+  #about-us h2 {
+    margin-top: 0;
+    color: white;
+    border-bottom: 2px solid #00ffff;
+    padding-bottom: 0.5rem;
+  }
+
+  /* Services */
+  #services h2 {
+    margin-bottom: 1rem;
+    color: #00ffff;
+    border-bottom: 2px solid #00ffff;
+    padding-bottom: 0.5rem;
+  }
+
+
+  /* Carousel container with fade edges */
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cards-container {
+    display: flex;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+    animation: scrollCards 25s linear infinite;
+  }
+
+  /* For infinite scroll: duplicate cards container */
+  .cards-container > .card {
+    flex: 0 0 250px;
+  }
+
+  @keyframes scrollCards {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-250px * 5 - 1.5rem * 5)); }
+  }
+
+  .card {
+    background: #02008a;
+    border-radius: 1rem;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+    flex: 0 0 250px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    transform: scale(1.07) translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,255,255,0.6);
+    z-index: 10;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    filter: brightness(0.85);
+    transition: filter 0.3s ease;
+  }
+  .card:hover img {
+    filter: brightness(1);
+  }
+
+  .card-content {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-title {
+    font-weight: 700;
+    color: #00ffff;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+  }
+
+  .card-description {
+    font-size: 0.95rem;
+    color: #cceeff;
+    flex-grow: 1;
+  }
+
+  /* Footer */
+  footer {
+    background: #010066;
+    color: #00ffff;
+    text-align: center;
+    padding: 1rem 0;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: inset 0 1px 5px rgba(0,255,255,0.4);
+  }
+
+  /* Scrollbar hidden */
+  .cards-container::-webkit-scrollbar {
+    display: none;
+  }
+  .cards-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cards-container {
+      animation-duration: 40s;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <img src="images/abhitech_logo.png" alt="A" />
+  Abhitech Energycon Limited
+</header>
+
+<main>
+  <section id="about-us">
+    <h2>About Us</h2>
+    <p>
+      Abhitech Energycon Limited is a pioneering company in energy solutions, dedicated to innovation and sustainability in the energy sector.
+      Our expertise ranges from advanced technologies to tailored energy products aimed at global impact.
+    </p>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="carousel-wrapper" aria-label="Services carousel">
+      <div class="cards-container" id="serviceCards1">
+  <!-- Cards group 1 -->
+  <div class="card" onclick="redirectTo('smartcoke.html')">
+    <img src="images/smartcoke.jpg" alt="SmartCoke AI coke blend prediction" />
+    <div class="card-content">
+      <h3 class="card-title">SmartCoke</h3>
+      <p class="card-description">AI model predicts coke blend for optimal efficiency and sustainability in coal processing.</p>
+    </div>
+  </div>
+  <div class="card" onclick="redirectTo('slaggingpredictor.html')">
+    <img src="images/slaggingpredictor.jpg" alt="SlaggingPredictor AI coal blend simulation" />
+    <div class="card-content">
+      <h3 class="card-title">SlaggingPredictor</h3>
+      <p class="card-description">AI simulates coal blends and predicts slagging to enhance process outcomes.</p>
+    </div>
+  </div>
+  <div class="card" onclick="redirectTo('erp.html')">
+    <img src="images/erp.jpg" alt="ERP internal management system" />
+    <div class="card-content">
+      <h3 class="card-title">ERP</h3>
+      <p class="card-description">Robust internal management system to streamline company operations efficiently.</p>
+    </div>
+  </div>
+  <div class="card" onclick="redirectTo('abhistat.html')">
+    <img src="images/abhistat.jpg" alt="Abhistat data analytics dashboard" />
+    <div class="card-content">
+      <h3 class="card-title">Abhistat</h3>
+      <p class="card-description">Advanced analytics platform to analyze and visualize operational statistics.</p>
+    </div>
+  </div>
+
+  <!-- 🔁 Duplicate the same 4 cards again -->
+  <div class="card" onclick="redirectTo('smartcoke.html')">
+    <img src="images/smartcoke.jpg" alt="SmartCoke AI coke blend prediction" />
+    <div class="card-content">
+      <h3 class="card-title">SmartCoke</h3>
+      <p class="card-description">AI model predicts coke blend for optimal efficiency and sustainability in coal processing.</p>
+    </div>
+  </div>
+  <div class="card" onclick="redirectTo('slaggingpredictor.html')">
+    <img src="images/slaggingpredictor.jpg" alt="SlaggingPredictor AI coal blend simulation" />
+    <div class="card-content">
+      <h3 class="card-title">SlaggingPredictor</h3>
+      <p class="card-description">AI simulates coal blends and predicts slagging to enhance process outcomes.</p>
+    </div>
+  </div>
+  <div class="card" onclick="redirectTo('erp.html')">
+    <img src="images/erp.jpg" alt="ERP internal management system" />
+    <div class="card-content">
+      <h3 class="card-title">ERP</h3>
+      <p class="card-description">Robust internal management system to streamline company operations efficiently.</p>
+    </div>
+  </div>
+  <div class="card" onclick="redirectTo('abhistat.html')">
+    <img src="images/abhistat.jpg" alt="Abhistat data analytics dashboard" />
+    <div class="card-content">
+      <h3 class="card-title">Abhistat</h3>
+      <p class="card-description">Advanced analytics platform to analyze and visualize operational statistics.</p>
+    </div>
+  </div>
+</div>
+
+  </section>
+</main>
+
+<footer>
+  © 2025 Abhitech Energycon Limited. All rights reserved.
+</footer>
+
+<script>
+  function redirectTo(page) {
+    window.location.href = page;
+  }
+
+  // Accessible keyboard navigation for cards
+  document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("keypress", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
