@@ -39,7 +39,7 @@
     z-index: 2;
   }
   header img {
-    height: 40px;
+    height: 60px; /* Increased size */
     width: auto;
   }
 
@@ -51,6 +51,27 @@
     width: 100%;
     position: relative;
     z-index: 2;
+  }
+
+  /* Hero Logo Section */
+  .hero-logo {
+    text-align: center;
+    margin: 3rem 0 4rem 0;
+    animation: fadeInScale 1.5s ease forwards;
+  }
+  .hero-logo img {
+    width: 220px; /* Big and attractive */
+    max-width: 80%;
+    filter: drop-shadow(0px 8px 18px rgba(2,0,138,0.5));
+    transition: transform 0.5s ease;
+  }
+  .hero-logo img:hover {
+    transform: scale(1.1);
+  }
+
+  @keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
   }
 
   /* About Us */
@@ -106,7 +127,7 @@
     100% { transform: translateX(calc(-4 * (250px + 1.5rem))); }
   }
 
-  /* Card as link */
+  /* Card */
   .card {
     background: #02008a;
     border: 2px solid var(--brand-blue);
@@ -179,10 +200,28 @@
     transform: translate(-50%, -50%);
     z-index: 1;
   }
+    /* Typing Effect */
+  .typing-text {
+    margin-top: 1.2rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--brand-blue);
+    height: 2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--brand-blue);
+    display: inline-block;
+    animation: blinkCursor 0.8s infinite;
+  }
+  @keyframes blinkCursor {
+    0%, 49% { border-color: var(--brand-blue); }
+    50%, 100% { border-color: transparent; }
+  }
 
   /* Responsive */
   @media (max-width: 768px) {
     .cards-container { animation-duration: 50s; }
+    .hero-logo img { width: 160px; }
   }
 </style>
 </head>
@@ -191,11 +230,18 @@
 <div class="cursor-glow"></div>
 
 <header>
-  <img src="/abhitech-logo.png" alt="A" />
+  <img src="/abhitech-logo.png" alt="Logo" />
   Abhitech Energycon Limited
 </header>
 
 <main>
+
+  <!-- Hero Logo at Center -->
+  <div class="hero-logo">
+    <img src="/abhitech-logo.png" alt="Abhitech Energycon Logo" />
+    <div class="typing-text" id="typing"></div>
+  </div>
+
   <section id="about-us">
     <h2>About Us</h2>
     <p>
@@ -204,7 +250,7 @@
     </p>
   </section>
 
-  <section id="services">
+<section id="services">
     <h2>Our Services</h2>
     <div class="carousel-wrapper" aria-label="Services carousel">
       <div class="cards-container" id="serviceCards1">
@@ -233,7 +279,7 @@
           </div>
         </a>
 
-        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
+        <a class="card" href="https://abhistat.com/" target="_blank">
           <img src="/abhistat.png" alt="Abhistat" />
           <div class="card-content">
             <h3 class="card-title">Abhistat</h3>
@@ -263,7 +309,7 @@
             <p class="card-description">Robust internal management system to streamline company operations efficiently.</p>
           </div>
         </a>
-        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
+        <a class="card" href="https://abhistat.com/" target="_blank">
           <img src="/abhistat.png" alt="Abhistat" />
           <div class="card-content">
             <h3 class="card-title">Abhistat</h3>
@@ -287,6 +333,31 @@
     cursor.style.top = e.clientY + "px";
     cursor.style.left = e.clientX + "px";
   });
+
+    const typingText = document.getElementById("typing");
+  const words = ["Innovation", "Energy", "Sustainability"];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function typeEffect() {
+    const currentWord = words[wordIndex];
+    const visibleText = currentWord.substring(0, charIndex);
+    typingText.textContent = visibleText;
+
+    if (!isDeleting && charIndex < currentWord.length) {
+      charIndex++;
+      setTimeout(typeEffect, 150);
+    } else if (isDeleting && charIndex > 0) {
+      charIndex--;
+      setTimeout(typeEffect, 100);
+    } else {
+      isDeleting = !isDeleting;
+      if (!isDeleting) wordIndex = (wordIndex + 1) % words.length;
+      setTimeout(typeEffect, 1000);
+    }
+  }
+  typeEffect();
 </script>
 
 </body>
