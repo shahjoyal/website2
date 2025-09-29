@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Abhitech Energycon Limited</title>
-<link rel="icon" type="image/png" href="/abhitech-logo.png"/>
 <style>
   :root {
     --brand-blue: #02008a;
@@ -28,20 +27,50 @@
   /* Navbar */
   header {
     background: var(--brand-blue);
-    padding: 1rem 2rem;
+    padding: 0.8rem 2rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: space-between;
     color: var(--text-light);
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 700;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     position: relative;
     z-index: 2;
   }
-  header img {
-    height: 60px; /* Increased size */
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-container img {
+    height: 50px;
     width: auto;
+    animation: logoBounce 1.2s ease-out;
+  }
+
+  @keyframes logoBounce {
+    0% { transform: scale(0.6); opacity: 0; }
+    50% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+
+  .typing-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--brand-accent);
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid var(--brand-accent);
+    animation: blinkCursor 0.8s infinite;
+    margin-left: 1rem;
+  }
+
+  @keyframes blinkCursor {
+    0%, 49% { border-color: var(--brand-accent); }
+    50%, 100% { border-color: transparent; }
   }
 
   main {
@@ -54,53 +83,6 @@
     z-index: 2;
   }
 
-  /* Hero Logo Section */
-  .hero-logo {
-    text-align: center;
-    margin: 3rem 0 4rem 0;
-    animation: fadeInScale 1.5s ease forwards;
-  }
-  .hero-logo img {
-    width: 220px; /* Big and attractive */
-    max-width: 80%;
-    filter: drop-shadow(0px 8px 18px rgba(2,0,138,0.5));
-    transition: transform 0.5s ease;
-  }
-  .hero-logo img:hover {
-    transform: scale(1.1);
-  }
-
-  @keyframes fadeInScale {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  /* About Us */
-  #about-us {
-    background: var(--brand-blue);
-    padding: 2rem;
-    border-radius: 1rem;
-    color: var(--text-light);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    margin-bottom: 3rem;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1.2s ease forwards;
-  }
-  #about-us h2 {
-    margin-top: 0;
-    color: white;
-    border-bottom: 2px solid var(--brand-accent);
-    padding-bottom: 0.5rem;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   /* Services */
   #services h2 {
     margin-bottom: 1rem;
@@ -110,32 +92,19 @@
     font-weight: 700;
   }
 
-  /* Carousel */
-  .carousel-wrapper {
-    position: relative;
-    overflow: hidden;
-  }
   .cards-container {
-    display: flex;
-    gap: 1.5rem;
-    animation: scrollCards 30s linear infinite;
-  }
-  .cards-container > .card {
-    flex: 0 0 250px;
-  }
-  @keyframes scrollCards {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-4 * (250px + 1.5rem))); }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
   }
 
-  /* Card */
   .card {
     background: #02008a;
     border: 2px solid var(--brand-blue);
     border-radius: 1rem;
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    flex: 0 0 250px;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -171,6 +140,7 @@
     margin: 0 0 0.5rem 0;
     font-size: 1.2rem;
   }
+
   .card-description {
     font-size: 0.95rem;
     color: white;
@@ -201,28 +171,17 @@
     transform: translate(-50%, -50%);
     z-index: 1;
   }
-    /* Typing Effect */
-  .typing-text {
-    margin-top: 1.2rem;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: var(--brand-blue);
-    height: 2rem;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid var(--brand-blue);
-    display: inline-block;
-    animation: blinkCursor 0.8s infinite;
-  }
-  @keyframes blinkCursor {
-    0%, 49% { border-color: var(--brand-blue); }
-    50%, 100% { border-color: transparent; }
-  }
 
-  /* Responsive */
   @media (max-width: 768px) {
-    .cards-container { animation-duration: 50s; }
-    .hero-logo img { width: 160px; }
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .typing-text {
+      font-size: 1rem;
+      margin-left: 0;
+      margin-top: 0.5rem;
+    }
   }
 </style>
 </head>
@@ -231,111 +190,69 @@
 <div class="cursor-glow"></div>
 
 <header>
-  <img src="/abhitech-logo.png" alt="Logo" />
-  Abhitech Energycon Limited
+  <div class="logo-container">
+    <img src="abhitech-logo.png" alt="Abhitech Logo" />
+    <span>Abhitech Energycon Limited</span>
+  </div>
+  <div class="typing-text" id="typing"></div>
 </header>
 
 <main>
+ <section id="services">
+  <h2>Our Services</h2>
+  <div class="cards-container">
 
-  <!-- Hero Logo at Center -->
-  <div class="hero-logo">
-    <img src="/abhitech-logo.png" alt="Abhitech Energycon Logo" />
-    <div class="typing-text" id="typing"></div>
-  </div>
-
-  <section id="about-us">
-    <h2>About Us</h2>
-    <p>
-      Abhitech Energycon Limited is a pioneering company in energy solutions, dedicated to innovation and sustainability in the energy sector.
-      Our expertise ranges from advanced technologies to tailored energy products aimed at global impact.
-    </p>
-  </section>
-
-<section id="services">
-    <h2>Our Services</h2>
-    <div class="carousel-wrapper" aria-label="Services carousel">
-      <div class="cards-container" id="serviceCards1">
-        
-        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
-          <img src="/smartcoke.png" alt="SmartCoke" />
-          <div class="card-content">
-            <h3 class="card-title">SmartCoke</h3>
-            <p class="card-description">AI model predicts coke blend for optimal efficiency and sustainability in coal processing.</p>
-          </div>
-        </a>
-
-        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
-          <img src="/slaggingpredictor.png" alt="SlaggingPredictor" />
-          <div class="card-content">
-            <h3 class="card-title">SlaggingPredictor</h3>
-            <p class="card-description">AI simulates coal blends and predicts slagging to enhance process outcomes.</p>
-          </div>
-        </a>
-
-        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
-          <img src="/erp.png" alt="ERP" />
-          <div class="card-content">
-            <h3 class="card-title">ERP</h3>
-            <p class="card-description">Robust internal management system to streamline company operations efficiently.</p>
-          </div>
-        </a>
-
-        <a class="card" href="https://abhistat.com/" target="_blank">
-          <img src="/abhistat.png" alt="Abhistat" />
-          <div class="card-content">
-            <h3 class="card-title">AbhiStat</h3>
-            <p class="card-description">Advanced analytics platform to analyze and visualize operational statistics.</p>
-          </div>
-        </a>
-
-          <a class="card" href="https://mahagenco-ui.vercel.app/" target="_blank">
-          <img src="/abhipact.png" alt="Abhistat" />
-          <div class="card-content">
-            <h3 class="card-title">AbhiPact</h3>
-            <p class="card-description">Advanced analytics platform to analyze and visualize operational statistics.</p>
-          </div>
-        </a>
-
-        <!-- Duplicate for infinite scroll -->
-        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
-          <img src="/smartcoke.png" alt="SmartCoke" />
-          <div class="card-content">
-            <h3 class="card-title">SmartCoke</h3>
-            <p class="card-description">AI model predicts coke blend for optimal efficiency and sustainability in coal processing.</p>
-          </div>
-        </a>
-        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
-          <img src="/slaggingpredictor.png" alt="SlaggingPredictor" />
-          <div class="card-content">
-            <h3 class="card-title">SlaggingPredictor</h3>
-            <p class="card-description">AI simulates coal blends and predicts slagging to enhance process outcomes.</p>
-          </div>
-        </a>
-        <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
-          <img src="/erp.png" alt="ERP" />
-          <div class="card-content">
-            <h3 class="card-title">ERP</h3>
-            <p class="card-description">Robust internal management system to streamline company operations efficiently.</p>
-          </div>
-        </a>
-        <a class="card" href="https://abhistat.com/" target="_blank">
-          <img src="/abhistat.png" alt="Abhistat" />
-          <div class="card-content">
-            <h3 class="card-title">Abhistat</h3>
-            <p class="card-description">Advanced analytics platform to analyze and visualize operational statistics.</p>
-          </div>
-        </a>
-          <a class="card" href="https://mahagenco-ui.vercel.app/" target="_blank">
-          <img src="/abhipact.png" alt="Abhistat" />
-          <div class="card-content">
-            <h3 class="card-title">AbhiPact</h3>
-            <p class="card-description">Advanced analytics platform to analyze and visualize operational statistics.</p>
-          </div>
-        </a>
-
+    <a class="card" href="https://mahagenco-ui.vercel.app/" target="_blank">
+      <img src="/abhipact.png" alt="AbhiPact" />
+      <div class="card-content">
+        <h3 class="card-title">AbhiPact</h3>
+        <p class="card-description">Advanced analytics platform to analyze and visualize operational statistics.</p>
       </div>
-    </div>
-  </section>
+    </a>
+
+    <a class="card" href="https://abhistat.com/" target="_blank">
+      <img src="/abhistat.png" alt="AbhiStat" />
+      <div class="card-content">
+        <h3 class="card-title">AbhiStat</h3>
+        <p class="card-description">Advanced analytics platform to analyze and visualize operational statistics.</p>
+      </div>
+    </a>
+
+    <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
+      <img src="/slaggingpredictor.png" alt="Combustion Analyzer" />
+      <div class="card-content">
+        <h3 class="card-title">Combustion Analyzer</h3>
+        <p class="card-description">AI simulates coal blends and predicts slagging to enhance process outcomes.</p>
+      </div>
+    </a>
+
+    <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
+      <img src="/erp.png" alt="ERP" />
+      <div class="card-content">
+        <h3 class="card-title">ERP</h3>
+        <p class="card-description">Robust internal management system to streamline company operations efficiently.</p>
+      </div>
+    </a>
+
+    <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
+      <img src="/slaggingpredictor.png" alt="SlaggingPredictor" />
+      <div class="card-content">
+        <h3 class="card-title">SlaggingPredictor</h3>
+        <p class="card-description">AI simulates coal blends and predicts slagging to enhance process outcomes.</p>
+      </div>
+    </a>
+
+    <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
+      <img src="/smartcoke.png" alt="SmartCoke" />
+      <div class="card-content">
+        <h3 class="card-title">SmartCoke</h3>
+        <p class="card-description">AI model predicts coke blend for optimal efficiency and sustainability in coal processing.</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -350,7 +267,8 @@
     cursor.style.left = e.clientX + "px";
   });
 
-    const typingText = document.getElementById("typing");
+  // Typing effect
+  const typingText = document.getElementById("typing");
   const words = ["Innovation", "Energy", "Sustainability"];
   let wordIndex = 0;
   let charIndex = 0;
@@ -378,4 +296,3 @@
 
 </body>
 </html>
-
