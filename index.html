@@ -5,184 +5,257 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Abhitech Energycon Limited</title>
 <style>
-  :root {
-    --brand-blue: #02008a;
-    --brand-accent: #00e0ff;
-    --text-dark: #111;
-    --text-light: #fff;
-  }
+:root {
+  --brand-blue: #02008a;
+  --brand-accent: #00e0ff;
+  --text-dark: #111;
+  --text-light: #fff;
+}
 
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    background: #ffffff;
-    color: var(--text-dark);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-  }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: #ffffff;
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
 
-  /* Navbar */
+/* Navbar */
+header {
+  background: var(--brand-blue);
+  padding: 0.8rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-light);
+  font-size: 1.4rem;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-container img {
+  height: 50px;
+  width: auto;
+  animation: logoBounce 1.2s ease-out;
+}
+
+@keyframes logoBounce {
+  0% { transform: scale(0.6); opacity: 0; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.typing-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--brand-accent);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid var(--brand-accent);
+  animation: blinkCursor 0.8s infinite;
+  margin-left: 1rem;
+}
+
+@keyframes blinkCursor {
+  0%, 49% { border-color: var(--brand-accent); }
+  50%, 100% { border-color: transparent; }
+}
+
+main {
+  flex-grow: 1;
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Services */
+#services h2 {
+  margin-bottom: 1rem;
+  color: var(--brand-blue);
+  border-bottom: 2px solid var(--brand-blue);
+  padding-bottom: 0.5rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.card {
+  background: #02008a;
+  border: 2px solid var(--brand-blue);
+  border-radius: 1rem;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: white;
+}
+
+.card:hover {
+  transform: scale(1.05) rotate3d(1,1,0,6deg);
+  box-shadow: 0 15px 35px rgba(2,0,138,0.4), 0 0 25px var(--brand-accent);
+  z-index: 2;
+}
+
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.card-content {
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: white;
+  flex-grow: 1;
+}
+
+/* Footer */
+footer {
+  background: var(--brand-blue);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: inset 0 1px 5px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 2;
+}
+
+/* Cursor glow effect */
+.cursor-glow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,224,255,0.25) 0%, transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* ---------------- Responsive Media Queries ---------------- */
+
+/* Tablets */
+@media (max-width: 992px) {
   header {
-    background: var(--brand-blue);
-    padding: 0.8rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: var(--text-light);
-    font-size: 1.4rem;
-    font-weight: 700;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 2;
-  }
-
-  .logo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .logo-container img {
-    height: 50px;
-    width: auto;
-    animation: logoBounce 1.2s ease-out;
-  }
-
-  @keyframes logoBounce {
-    0% { transform: scale(0.6); opacity: 0; }
-    50% { transform: scale(1.15); opacity: 1; }
-    100% { transform: scale(1); }
-  }
-
-  .typing-text {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--brand-accent);
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid var(--brand-accent);
-    animation: blinkCursor 0.8s infinite;
-    margin-left: 1rem;
-  }
-
-  @keyframes blinkCursor {
-    0%, 49% { border-color: var(--brand-accent); }
-    50%, 100% { border-color: transparent; }
-  }
-
-  main {
-    flex-grow: 1;
-    max-width: 1400px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    width: 100%;
-    position: relative;
-    z-index: 2;
-  }
-
-  /* Services */
-  #services h2 {
-    margin-bottom: 1rem;
-    color: var(--brand-blue);
-    border-bottom: 2px solid var(--brand-blue);
-    padding-bottom: 0.5rem;
-    font-weight: 700;
-  }
-
-  .cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    padding: 1rem 0;
-  }
-
-  .card {
-    background: #02008a;
-    border: 2px solid var(--brand-blue);
-    border-radius: 1rem;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    position: relative;
-    overflow: hidden;
-    display: flex;
     flex-direction: column;
-    text-decoration: none;
-    color: white;
-  }
-
-  .card:hover {
-    transform: scale(1.05) rotate3d(1,1,0,6deg);
-    box-shadow: 0 15px 35px rgba(2,0,138,0.4), 0 0 25px var(--brand-accent);
-    z-index: 2;
-  }
-
-  .card img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-  }
-
-  .card-content {
+    align-items: flex-start;
     padding: 1rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
   }
-
-  .card-title {
-    font-weight: 700;
-    color: white;
-    margin: 0 0 0.5rem 0;
-    font-size: 1.2rem;
-  }
-
-  .card-description {
-    font-size: 0.95rem;
-    color: white;
-    flex-grow: 1;
-  }
-
-  /* Footer */
-  footer {
-    background: var(--brand-blue);
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-    font-weight: 600;
+  .typing-text {
     font-size: 1rem;
-    box-shadow: inset 0 1px 5px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 2;
+    margin: 0.5rem 0 0 0;
   }
+  #services h2 {
+    text-align: center;
+  }
+}
 
-  /* Cursor glow effect */
-  .cursor-glow {
-    position: fixed;
-    top: 0; left: 0;
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,224,255,0.25) 0%, transparent 70%);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+/* Mobiles */
+@media (max-width: 600px) {
+  header {
+    align-items: center;
+    text-align: center;
   }
+  .logo-container {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .typing-text {
+    font-size: 0.9rem;
+    border-right: none;
+  }
+  main {
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+  }
+  #services h2 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .card img {
+    height: 120px;
+  }
+  .card-title {
+    font-size: 1.1rem;
+  }
+  .card-description {
+    font-size: 0.85rem;
+  }
+  footer {
+    font-size: 0.9rem;
+    padding: 0.8rem 0;
+  }
+}
+#services h2 {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: var(--brand-blue);
+  border-bottom: 2px solid var(--brand-blue);
+  padding-bottom: 0.5rem;
+  font-weight: 700;
+  gap: 0.5rem; /* space between Our Products- and typing text */
+}
 
-  @media (max-width: 768px) {
-    header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .typing-text {
-      font-size: 1rem;
-      margin-left: 0;
-      margin-top: 0.5rem;
-    }
-  }
+.typing-text {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--brand-accent);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid var(--brand-accent);
+  animation: blinkCursor 0.8s infinite;
+  margin: 0; /* remove left margin for inline alignment */
+  vertical-align: middle;
+}
+
+
 </style>
 </head>
 <body>
@@ -192,14 +265,14 @@
 <header>
   <div class="logo-container">
     <img src="abhitech-logo.png" alt="Abhitech Logo" />
-    <span>Abhitech Energycon Limited</span>
+    <span>AEL-Software Analytics and Services</span>
   </div>
-  <div class="typing-text" id="typing"></div>
+  
 </header>
 
 <main>
  <section id="services">
-  <h2>Our Services</h2>
+   <h2>Our Products - <div class="typing-text" id="typing"></div></h2>
   <div class="cards-container">
 
     <a class="card" href="https://mahagenco-ui.vercel.app/" target="_blank">
@@ -229,7 +302,7 @@
     <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
       <img src="/erp.png" alt="ERP" />
       <div class="card-content">
-        <h3 class="card-title">ERP</h3>
+        <h3 class="card-title">Abhitech Technical Services</h3>
         <p class="card-description">Robust internal management system to streamline company operations efficiently.</p>
       </div>
     </a>
@@ -237,7 +310,7 @@
     <a class="card" href="https://slagging-predictor-two.vercel.app/" target="_blank">
       <img src="/slaggingpredictor.png" alt="SlaggingPredictor" />
       <div class="card-content">
-        <h3 class="card-title">SlaggingPredictor</h3>
+        <h3 class="card-title">Block Estimator</h3>
         <p class="card-description">AI simulates coal blends and predicts slagging to enhance process outcomes.</p>
       </div>
     </a>
@@ -269,7 +342,7 @@
 
   // Typing effect
   const typingText = document.getElementById("typing");
-  const words = ["Innovation", "Energy", "Sustainability"];
+  const words = ["Innovative", "Energy", "Sustainable","Customized"];
   let wordIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
