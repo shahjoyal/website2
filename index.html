@@ -112,7 +112,7 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-size: 1.02rem;
+  font-size: 1.25rem;
 }
 
 /* ------------------ Cards grid ------------------ */
@@ -153,17 +153,39 @@ main {
 
 /* Image - show entire image without cropping */
 .card img {
+  width: 100%;
+  height: var(--card-image-height);
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   display: block;
-  margin: 6px auto 0 auto;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: var(--card-image-height);
-  object-fit: contain;
-  object-position: center;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  background: rgba(255,255,255,0.02);
+}
+
+/* Rotator specific styles (first card) */
+.img-rotator {
+  position: relative;
+  width: 100%;
+  height: var(--card-image-height);
+  overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.img-rotator .rot-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: block;
+  transition: opacity 450ms ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+.img-rotator .rot-img.visible {
+  opacity: 1;
 }
 
 /* Content */
@@ -297,8 +319,16 @@ footer {
    <h2>Our Offerings - <div class="typing-text" id="typing"></div></h2>
   <div class="cards-container">
 
+    <!-- First card: contains the image rotator -->
     <a class="card" href="https://www.abhitechtechnicalworkspace.com/" target="_blank" rel="noopener">
-      <img src="/erp.png" alt="ERP" />
+      <!-- Rotator container: two overlapping images for smooth crossfade -->
+      <div class="img-rotator" aria-hidden="false" aria-label="Abhitech Technical Workspace images">
+        <!-- Image A (starts visible) -->
+        <img id="rot-img-a" class="rot-img visible" src="/erp.png" alt="Abhitech Technical Workspace screenshot - 1" />
+        <!-- Image B (hidden initially) -->
+        <img id="rot-img-b" class="rot-img" src="/erp1.png" alt="Abhitech Technical Workspace screenshot - 2" />
+      </div>
+
       <div class="card-content">
         <h3 class="card-title">Abhitech Technical Workspace</h3>
         <p class="card-description">A comprehensive tool to monitor our technical team as human resource for effective deployment and manage various databases related to customers, products etc.</p>
@@ -402,6 +432,77 @@ document.addEventListener('mousemove', e => {
   }
 
   setTimeout(typeLetter, 300);
+})();
+
+/* Image rotator (crossfade) for the first card */
+(function(){
+  // Elements
+  const imgA = document.getElementById('rot-img-a');
+  const imgB = document.getElementById('rot-img-b');
+  if(!imgA || !imgB) return;
+
+  // List your images here (5 images) — update paths if different
+  const images = [
+    '/erp.png',   // initial shown image
+    '/erp2.png',
+    '/erp4.png',
+    '/erp5.png',
+    '/erp6.png'
+  ];
+
+  // Preload all images to reduce flicker
+  images.forEach(src => { const p = new Image(); p.src = src; });
+
+  let currentIndex = 0;     // index of the currently visible image in `images`
+  let showingA = true;      // which DOM image element is currently visible
+  const changeInterval = 2000; // ms between changes
+  const transitionMs = 450;     // must match CSS transition (450ms)
+
+  // Ensure initial sources match the array
+  imgA.src = images[0];
+  imgA.alt = "Abhitech Technical Workspace screenshot - 1";
+  imgB.src = images[1] || images[0];
+  imgB.alt = "Abhitech Technical Workspace screenshot - 2";
+
+  // Small helper to set visible class (keeps CSS-driven opacity)
+  function showElement(el) {
+    el.classList.add('visible');
+  }
+  function hideElement(el) {
+    el.classList.remove('visible');
+  }
+
+  // Start interval
+  setInterval(() => {
+    // next image index
+    const nextIndex = (currentIndex + 1) % images.length;
+
+    if(showingA) {
+      // load next into B, fade B in, fade A out
+      imgB.src = images[nextIndex];
+      imgB.alt = `Abhitech Technical Workspace screenshot - ${nextIndex + 1}`;
+      // small timeout to ensure browser registers src change before transition
+      requestAnimationFrame(() => {
+        showElement(imgB);
+        hideElement(imgA);
+      });
+    } else {
+      // load next into A, fade A in, fade B out
+      imgA.src = images[nextIndex];
+      imgA.alt = `Abhitech Technical Workspace screenshot - ${nextIndex + 1}`;
+      requestAnimationFrame(() => {
+        showElement(imgA);
+        hideElement(imgB);
+      });
+    }
+
+    // flip flags
+    showingA = !showingA;
+    currentIndex = nextIndex;
+
+    // (Optional) after transition you could do housekeeping if needed
+    // setTimeout(() => { /* after transition */ }, transitionMs);
+  }, changeInterval);
 })();
 </script>
 
